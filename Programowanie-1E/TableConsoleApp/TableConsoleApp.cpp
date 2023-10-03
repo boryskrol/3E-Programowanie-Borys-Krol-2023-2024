@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 
+
 void task1()
 {
 	int a;
@@ -28,7 +29,6 @@ void task1()
 	}
 
 }
-
 /*
 Wyświetl największą liczbę ze zbioru
 */
@@ -83,7 +83,6 @@ void task2()
 			count++;
 	std::cout << "Ilość liczb większa od średniej " << count << "\n";
 }
-
 /*Zaimplementuj algorytm sortowania przez wybór*/
 void task3()
 {
@@ -125,7 +124,6 @@ void task3()
 	std::cout << "\n";
 
 }
-
 /*Zaimplementuj algorytm sortowania bąbelkowego*/
 void task4()
 {
@@ -167,8 +165,119 @@ void task4()
 	std::cout << "\n";
 
 }
+/*
+Napisz program/funkcję która dla tablicy z liczbami pseudolosowymi policzy
+średnią arytmetyczną tych liczb.
+*/
+void task5()
+{
+	const int size = 5;
+	int tabOfNumbers[size];
+	int AverageOfNumbers;
+	int sum = 0;
+
+	srand(time(NULL));
+	for (int i = 0; i < size; i++)
+	{
+		tabOfNumbers[i] = rand() % 10 + 1;
+	}
+
+	std::cout << "Liczby w tablicy:\n";
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << tabOfNumbers[i] << ", ";
+	}
+	std::cout << "\n";
+	
+	for (int i = 0; i < size; i++)
+	{
+		sum += tabOfNumbers[i];
+	}
+	AverageOfNumbers = sum / size;
+	std::cout << AverageOfNumbers;
+}
+/*
+* Napisz funkcję, która dla kolekcji danych liczbowych policzy ile jest liczb większych od średniej arytmetycznej.
+*/
+void task6()
+{
+	const int size = 5;
+	int tabOfNumbers[size];
+	int AverageOfNumbers;
+	int sum = 0;
+	int moreThanAverage = 0;
+
+	srand(time(NULL));
+	for (int i = 0; i < size; i++)
+	{
+		tabOfNumbers[i] = rand() % 10 + 1;
+	}
+
+	std::cout << "Liczby w tablicy:\n";
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << tabOfNumbers[i] << ", ";
+	}
+	std::cout << "\n";
+
+	for (int i = 0; i < size; i++)
+	{
+		sum += tabOfNumbers[i];
+	}
+	AverageOfNumbers = sum / size;
+	std::cout << "Średnia tych lizcb to: " << AverageOfNumbers << "\n" << "\n";
+
+	for (int i = 0; i < size; i++)
+	{
+		if (tabOfNumbers[i] > AverageOfNumbers)
+		{
+			moreThanAverage++;
+		}
+	}
+	std::cout << "Liczb więcej niż średnia jest: " << moreThanAverage;
+}
+/*
+* Napisz funkcje, która dla kolekcji danych liczbowych przeniesie te liczby do innej kolekcji w odwrotnej kolejności.
+*/
+void task7()
+{
+	const int size = 5;
+	int tabOfNumbers[size];
+	int AverageOfNumbers;
+	int sum = 0;
+	int moreThanAverage = 0;
+
+	srand(time(NULL));
+	for (int i = 0; i < size; i++)
+	{
+		tabOfNumbers[i] = rand() % 10 + 1;
+	}
+
+	std::cout << "Liczby w tablicy: \n";
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << tabOfNumbers[i] << ", ";
+	}
+	std::cout << "\n";
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << tabOfNumbers[i] << ", ";
+	}
+	std::cout << "\n";
+}
+/*
+* Napisz funkcje, która dla kolekcji danych liczbowych obliczy częstotliwość występowania danej liczby.
+* Napisz funkcję, która dla kolekcji danych liczbowych znajdzie najdłuższy rosnący podciąg.
+* Napisz funkcję, która dla kolekcji danych liczbowych przeniesie te liczby do osobnych kolekcji liczb parzystych i nieparzystych.
+/*
+ 
+
+/*
+tablicaLiczb[i] = rand() % (zakresGorny - zakresDolny + 1) + zakresDolny;
+*/
+
 
 int main()
 {
-	task4();
+	task7();
 }
