@@ -196,6 +196,7 @@ void task5()
 	AverageOfNumbers = sum / size;
 	std::cout << AverageOfNumbers;
 }
+
 /*
 * Napisz funkcję, która dla kolekcji danych liczbowych policzy ile jest liczb większych od średniej arytmetycznej.
 */
