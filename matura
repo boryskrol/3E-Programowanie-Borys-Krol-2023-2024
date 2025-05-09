@@ -1,0 +1,215 @@
+Maj23 24
+//Zad.3.2
+
+using System.ComponentModel.Design;
+using System.Runtime.InteropServices;
+using System.Reflection.Metadata;
+
+StreamReader streamReader = new StreamReader("skrot_przyklad.txt");
+string? numberFromFile;
+List<string> numbersFromFile = new List<string>();
+
+
+while ((numberFromFile = streamReader.ReadLine()) != null)
+{
+    numbersFromFile.Add(numberFromFile);
+
+}
+streamReader.Close();
+
+int n = 0;
+int m = 0;
+int i = 1;
+int dontExistNumbers = 0;
+int highestNumber = 0;
+
+foreach (var number in numbersFromFile)
+{
+    m = 0;
+    i = 1;
+    n = int.Parse(number);
+
+    while (n > 0)
+    { 
+
+
+        if ((n%10 & 1) == 0)
+        {
+            m += n % 10 * i;
+            i *= 10;
+        }
+        n /= 10;
+    }
+    if (m == 0)
+    {
+        dontExistNumbers++;
+        if (int.Parse(number) > highestNumber)
+            highestNumber = int.Parse(number);
+    }
+
+}
+
+Console.WriteLine(dontExistNumbers);
+Console.WriteLine(highestNumber);
+
+
+//Zad.3.3
+
+    class Program2
+    {
+    static int GetOddShortcut(int number)
+    {
+        int oddShortcut = 0, factor = 1;
+        while (number > 0)
+        {
+            int digit = number % 10;
+            if (digit % 2 == 1)
+            {
+                oddShortcut += digit * factor;
+                factor *= 10;
+            }
+            number /= 10;
+        }
+        if (oddShortcut == 0)
+            oddShortcut = 1;
+        return oddShortcut;
+    }
+
+    static void Main()
+    {
+        string inputFile = "skrot2.txt";
+        string outputFile = "wyniki3_3.txt";
+
+        if (!File.Exists(inputFile))
+        {
+            Console.WriteLine("Plik nie istnieje.");
+            return;
+        }
+
+        StreamReader reader = new StreamReader(inputFile);
+        StreamWriter writer = new StreamWriter(outputFile);
+
+        string line;
+        while ((line = reader.ReadLine()) != null)
+        {
+            int number = int.Parse(line);
+            int oddShortcut = GetOddShortcut(number);
+
+            int a = number, b = oddShortcut, result;
+            while (b != 0)
+            {
+                result = a % b;
+                a = b;
+                b = result;
+            }
+
+            if (a == 7)
+            {
+                writer.WriteLine(number);
+            }
+        }
+
+        reader.Close();
+        writer.Close();
+        Console.WriteLine("Zapisano wyniki do wyniki3_3.txt");
+    }
+}
+
+
+
+
+
+
+Maj 22
+
+
+
+StreamReader streamReader = new StreamReader("przyklad.txt");
+
+string? strNumberFromFile;
+List<string> strNumbersFromFile = new List<string>();
+
+while ((strNumberFromFile = streamReader.ReadLine()) != null)
+{
+    strNumbersFromFile.Add(strNumberFromFile);
+}
+streamReader.Close();
+
+/* Zad4.1 */
+byte counter = 0;
+string? firtFindNumber = null;
+foreach (string strNumber in strNumbersFromFile)
+
+
+{
+    char firstDigit = strNumber[0];
+    char lastDigit = strNumber[strNumber.Length - 1];
+
+    if (firstDigit == lastDigit)
+    {
+        counter++;
+        if (firtFindNumber == null)
+            firtFindNumber = strNumber;
+    }
+}
+Console.WriteLine($"Zad4.1: {counter} {firtFindNumber}");
+
+/* Zad4.2 */
+int maxNumber = 1;
+int maxNumberCounter = 0;
+
+
+int maxDifferentNumber = 1;
+int maxDifferentCount = 0;
+foreach (string strNumber in strNumbersFromFile)
+{
+    int number = Convert.ToInt32(strNumber);
+    int divisor = 2;
+    List<int> primeFactors = new List<int>();
+    while (number != 1)
+    {
+        if (number % divisor == 0)
+        {
+            number = number / divisor;
+            primeFactors.Add(divisor);
+        }
+        else
+            divisor++;
+    }
+    if (primeFactors.Count() > maxNumberCounter)
+    {
+        maxNumberCounter = primeFactors.Count();
+        maxNumber = Convert.ToInt32(strNumber);
+    }
+
+    if (primeFactors.Distinct().Count() > maxDifferentCount)
+    {
+        maxDifferentCount = primeFactors.Distinct().Count();
+        maxDifferentNumber = Convert.ToInt32(strNumber);
+    }
+}
+Console.WriteLine($"liczba z znajwieksza iloscia czynnikow pierwszych: {maxNumber} {maxNumberCounter}");
+Console.WriteLine($"liczba z znajwieksza różną iloscia czynnikow pierwszych: {maxDifferentNumber} {maxDifferentCount}");
+
+/* Zad4.3 */
+class Program3
+{
+    static void Main()
+    {
+        List<int> liczby = File.ReadAllLines("liczby.txt")
+                                .SelectMany(line => line.Split(' ')
+                                .Select(int.Parse))
+                                .Distinct()
+                                .ToList();
+        List<string> trojki = new List<string>();
+        List<string> piatki = new List<string>();
+
+        foreach (int x in liczby) {
+
+}
+        File.WriteAllLines($"trojki.txt", trojki);
+
+        Console.WriteLine($"Liczba dobrych trójek: {trojki.Count}");
+        Console.WriteLine($"Liczba dobrych piątek: {piatki.Count}");
+    }
+}
