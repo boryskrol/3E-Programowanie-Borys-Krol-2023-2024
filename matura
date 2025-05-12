@@ -1,3 +1,113 @@
+czerwiec 22
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        string[] lines = File.ReadAllLines("liczby.txt");
+        
+        foreach (string line in lines)
+        {
+            int number = int.Parse(line);
+            int reversed = ReverseNumber(number);
+            
+            if (reversed % 17 == 0)
+            {
+                Console.WriteLine(reversed);
+            }
+        }
+    }
+
+    static int ReverseNumber(int n)
+    {
+        string numStr = n.ToString();
+        char[] charArray = numStr.ToCharArray();
+        Array.Reverse(charArray);
+        string reversedStr = new string(charArray);
+        return int.Parse(reversedStr);
+    }
+}
+
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        string[] lines = File.ReadAllLines("liczby.txt");
+        int maxNumber = 0;
+        int maxDiff = 0;
+
+        foreach (string line in lines)
+        {
+            int number = int.Parse(line);
+            int reversed = ReverseNumber(number);
+            int diff = Math.Abs(number - reversed);
+            
+            if (diff > maxDiff)
+            {
+                maxDiff = diff;
+                maxNumber = number;
+            }
+        }
+
+        Console.WriteLine($"{maxNumber} {maxDiff}");
+    }
+
+    static int ReverseNumber(int n)
+    {
+        string numStr = n.ToString();
+        char[] charArray = numStr.ToCharArray();
+        Array.Reverse(charArray);
+        string reversedStr = new string(charArray);
+        return int.Parse(reversedStr);
+    }
+}
+
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        string[] lines = File.ReadAllLines("liczby.txt");
+        
+        foreach (string line in lines)
+        {
+            int number = int.Parse(line);
+            int reversed = ReverseNumber(number);
+            
+            if (IsPrime(number) && IsPrime(reversed))
+            {
+                Console.WriteLine(number);
+            }
+        }
+    }
+
+    static int ReverseNumber(int n)
+    {
+        string numStr = n.ToString();
+        char[] charArray = numStr.ToCharArray();
+        Array.Reverse(charArray);
+        string reversedStr = new string(charArray);
+        return int.Parse(reversedStr);
+    }
+
+    static bool IsPrime(int n)
+    {
+        if (n < 2) return false;
+        for (int i = 2; i * i <= n; i++)
+        {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+}
+
 Maj23 24
 //Zad.3.2
 
